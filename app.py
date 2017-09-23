@@ -7,7 +7,7 @@ class RootServer:
     @cherrypy.expose
     def index(self, **keywords):
     	global SVCNAME
-        return "{}It works!".format(SVCNAME)
+        return "{}It works! Access /sleep/<sleep-in-secs> to sleep that many seconds".format(SVCNAME)
 
     @cherrypy.expose
     def sleep(self, seconds=0):
