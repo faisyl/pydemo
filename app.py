@@ -30,7 +30,7 @@ if __name__ == '__main__':
     ckey = os.path.join(CPATH, 'server.key')
     SVCNAME = os.getenv('SVCNAME', '')
     if SVCNAME:
-        SVCNAME = "[{}].format(SVCNAME)
+        SVCNAME = "[{}]".format(SVCNAME)
     server_config={
         'server.socket_host': '0.0.0.0',
         'server.socket_port':443,
