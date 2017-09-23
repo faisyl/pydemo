@@ -5,8 +5,8 @@ SVCNAME=''
 
 class RootServer:
     @cherrypy.expose
-    global SVCNAME
     def index(self, **keywords):
+    	global SVCNAME
         return "{}It works!".format(SVCNAME)
 
     @cherrypy.expose
