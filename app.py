@@ -31,14 +31,22 @@ if __name__ == '__main__':
     SVCNAME = os.getenv('SVCNAME', '')
     if SVCNAME:
         SVCNAME = "[{}]".format(SVCNAME)
-    server_config={
-        'server.socket_host': '0.0.0.0',
-        'server.socket_port':443,
-
-        'server.ssl_module':'pyopenssl',
-        'server.ssl_certificate': ccert,
-        'server.ssl_private_key': ckey,
-    }
+    if os.path.exists(ccert):
+        server_config={
+            'server.socket_host': '0.0.0.0',
+            'server.socket_port':443,
+    
+            'server.ssl_module':'pyopenssl',
+            'server.ssl_certificate': ccert,
+            'server.ssl_private_key': ckey,
+        }
+        print "Serving TLS on port 443"
+    else:
+        server_config={
+            'server.socket_host': '0.0.0.0',
+            'server.socket_port':80,
+        }
+        print "Serving non-TLS on port 80" 
 
     cherrypy.config.update(server_config)
     cherrypy.quickstart(RootServer())
